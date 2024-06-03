@@ -87,7 +87,15 @@
     </section>
   </main>
 
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
   <script>
+      // Step 5 - TrackJS integration
+      window.TrackJS && TrackJS.install({
+      token: "ea5a03adbdd24f2d850a727f4f00dea8" 
+    });
+  </script>
+  <script>
+    
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
       e.preventDefault();
@@ -102,6 +110,117 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+    
+    // Step 2 - Adding Buttons for Console Testing
+    errorBtns[0].addEventListener('click', () => {
+      console.log('Console Log Demo');
+    });
+
+    errorBtns[1].addEventListener('click', () => {
+      console.error('This is a console error message');
+    });
+
+    errorBtns[2].addEventListener('click', () => {
+      console.count('Count');
+    });
+
+    errorBtns[3].addEventListener('click', () => {
+      console.warn('This is a console warn message');
+    });
+
+    errorBtns[4].addEventListener('click', () => {
+      console.assert(false, 'This is a console assert message');
+    });
+
+    errorBtns[5].addEventListener('click', () => {
+      console.clear();
+    });
+
+    errorBtns[6].addEventListener('click', () => {
+      console.dir(document.body);
+    });
+
+    errorBtns[7].addEventListener('click', () => {
+      console.dirxml(document);
+    });
+
+    errorBtns[8].addEventListener('click', () => {
+      console.group('Group');
+      console.log('Inside group');
+    });
+
+    errorBtns[9].addEventListener('click', () => {
+      console.groupEnd();
+    });
+
+    errorBtns[10].addEventListener('click', () => {
+      console.table([{ a: 1, b: 'Y' }, { a: 'Z', b: 2 }]);
+    });
+
+    errorBtns[11].addEventListener('click', () => {
+      console.time('Timer');
+    });
+
+    errorBtns[12].addEventListener('click', () => {
+      console.timeEnd('Timer');
+    });
+
+    errorBtns[13].addEventListener('click', () => {
+      console.trace('Trace message');
+    });
+
+    errorBtns[14].addEventListener('click', () => {
+      undefinedFunction();
+    });
+
+    errorBtns[15].addEventListener('click', () => {
+      console.log("Invalid button");
+    });
+
+    // Step 3 - Try/Catch/Finally
+    try {
+      nonExistentFunction();
+    } catch (error) {
+      console.error('Caught an error:', error);
+    } finally {
+      console.log('Finally block executed');
+    }
+
+    // Step 4 - Custom Error Example
+    class CustomError extends Error {
+      constructor(message) {
+        super(message);
+        this.name = 'CustomError';
+      }
+    }
+
+    try {
+      throw new CustomError('This is a custom error');
+    } catch (error) {
+      console.error(error.name + ': ' + error.message);
+    }
+
+    // Step 5 - Global Error Handler
+    window.addEventListener('error', (event) => {
+      console.log('Global error caught:', event.message);
+    });
+
+    // Step 5 - Trigger a global error to test the handler
+    // errorBtns[14].addEventListener('click', () => {
+    //   try {
+    //     undefinedFunction();
+    //   } catch (error) {
+    //     console.error('Caught an error during button click:', error);
+    //   }
+    // });
+
+    errorBtns[14].addEventListener('click', () => {
+      try {
+        undefinedFunction();
+      } catch (error) {
+        TrackJS.track(error);
+      }
+    });
   </script>
 </body>
 
