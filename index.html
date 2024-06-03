@@ -154,7 +154,7 @@
     });
 
     errorBtns[10].addEventListener('click', () => {
-      console.table([{ a: 1, b: 'Y' }, { a: 'Z', b: 2 }]);
+      console.table([{ name: 'Team 1', count: 100 }, { name: 'Team 2', count: 5 }]);
     });
 
     errorBtns[11].addEventListener('click', () => {
@@ -206,14 +206,6 @@
     });
 
     // Step 5 - Trigger a global error to test the handler
-    // errorBtns[14].addEventListener('click', () => {
-    //   try {
-    //     undefinedFunction();
-    //   } catch (error) {
-    //     console.error('Caught an error during button click:', error);
-    //   }
-    // });
-
     errorBtns[14].addEventListener('click', () => {
       try {
         undefinedFunction();
